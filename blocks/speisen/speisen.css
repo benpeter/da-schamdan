@@ -1,32 +1,40 @@
-.speisen > div {      
-    display: grid;
-    grid-template:
-      "nr name p2 p1"
-      "nr description p2 p1" / 2em auto auto 4em;
-    gap: 0;
-    grid-auto-flow: row;
-    margin-bottom: 8px;
+/* Speisen (menu) block — matches original 5-area grid layout */
+.speisen > div {
+  display: grid;
+  grid-template:
+    "nr name   sizes prices"
+    "nr desc   sizes prices" / 2em auto auto 4em;
+  gap: 0;
+  margin-bottom: 8px;
 }
 
-.speisen > div > div:nth-child(4) {
-    text-align: right;
-    grid-area: p2;
+.speisen .item-nr {
+  grid-area: nr;
 }
 
-.speisen > div > div:nth-child(5) {
-    text-align: right;
-    padding-left: 8px;
-    grid-area: p1;
+.speisen .item-info {
+  grid-area: name;
 }
 
-.speisen > div > div:nth-child(3) {
-    grid-area: description;
-    font-size: smaller;
-    font-style: italic;
-    text-align: left;
+.speisen .item-desc {
+  grid-area: desc;
+  font-size: smaller;
+  font-style: italic;
+  text-align: left;
+}
+
+.speisen .item-sizes {
+  grid-area: sizes;
+  text-align: right;
+}
+
+.speisen .item-prices {
+  grid-area: prices;
+  text-align: right;
+  padding-left: 8px;
 }
 
 /* reset p margins added by aem.js wrapTextNodes */
 .speisen p {
-    margin: 0;
+  margin: 0;
 }
