@@ -1,9 +1,9 @@
-/* Speisen (menu) block — matches original 4-area grid layout */
+/* Speisen (menu) block — matches original 5-area grid layout */
 .speisen > div {
   display: grid;
   grid-template:
-    "nr name   prices"
-    "nr desc   prices" / 2em auto auto;
+    "nr name   sizes prices"
+    "nr desc   sizes prices" / 2em auto auto 4em;
   gap: 0;
   margin-bottom: 8px;
 }
@@ -20,6 +20,12 @@
   grid-area: desc;
   font-size: smaller;
   font-style: italic;
+  text-align: left;
+}
+
+.speisen .item-sizes {
+  grid-area: sizes;
+  text-align: right;
 }
 
 .speisen .item-prices {
