@@ -70,6 +70,9 @@ export function decorateMain(main) {
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'de-DE';
+  // eslint-disable-next-line no-await-in-loop
+  const daPreview = (await import(`${import.meta.url.replace('scripts.js', 'dapreview.js')}`)).default;
+  if (daPreview) await daPreview;
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
