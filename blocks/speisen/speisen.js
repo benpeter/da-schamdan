@@ -17,6 +17,16 @@
 
 const PRICE_RE = /^(.+?)\s+(\d[\d,.]*\s*€)$/;
 
+function headerCellHTML(p) {
+  const strong = p.querySelector('strong');
+  if (!strong) return p.outerHTML;
+  const boldText = strong.textContent;
+  const rest = p.textContent.replace(boldText, '').trim();
+  let html = `<p><strong>${boldText}</strong></p>`;
+  if (rest) html += `<p>${rest}</p>`;
+  return html;
+}
+
 function decorateHeaderRow(row, priceCol) {
   const pElements = [...priceCol.querySelectorAll('p')];
 
@@ -36,10 +46,10 @@ function decorateHeaderRow(row, priceCol) {
   pricesEl.className = 'item-prices';
 
   if (pElements.length >= 2) {
-    sizesEl.appendChild(pElements[0]);
-    pricesEl.appendChild(pElements[1]);
+    sizesEl.innerHTML = headerCellHTML(pElements[0]);
+    pricesEl.innerHTML = headerCellHTML(pElements[1]);
   } else if (pElements.length === 1) {
-    pricesEl.appendChild(pElements[0]);
+    pricesEl.innerHTML = headerCellHTML(pElements[0]);
   }
 
   row.classList.add('price-header');
