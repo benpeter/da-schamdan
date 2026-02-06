@@ -1,0 +1,7 @@
+.hlx/*
+coverage/*
+logs/*
+node_modules/*
+
+helix-importer-ui
+DA-MIGRATION-PLAN.md
