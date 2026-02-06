@@ -1,17 +1,29 @@
-/* Speisen (menu) block — 3-column grid: nr | name+desc | prices */
+/* Speisen (menu) block — matches original 4-area grid layout */
 .speisen > div {
   display: grid;
-  grid-template-columns: 2em 1fr auto;
+  grid-template:
+    "nr name   prices"
+    "nr desc   prices" / 2em auto auto;
+  gap: 0;
   margin-bottom: 8px;
-  align-items: baseline;
 }
 
-.speisen .item-info .item-desc {
+.speisen .item-nr {
+  grid-area: nr;
+}
+
+.speisen .item-info {
+  grid-area: name;
+}
+
+.speisen .item-desc {
+  grid-area: desc;
   font-size: smaller;
   font-style: italic;
 }
 
 .speisen .item-prices {
+  grid-area: prices;
   text-align: right;
   padding-left: 8px;
 }
