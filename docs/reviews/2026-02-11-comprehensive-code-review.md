@@ -23,7 +23,7 @@
 
 ### Top 3 Priority Areas
 
-1. **Accessibility -- header navigation (A11Y-01, A11Y-02, A11Y-04, A11Y-05)**: All three Critical findings are accessibility issues in the header. The hamburger menu and dropdown sections are invisible to screen readers and inoperable via keyboard, violating WCAG Level A requirements. These are quick fixes (S effort) that unblock basic assistive technology access.
+1. **Accessibility -- navigation and menu semantics (A11Y-01, A11Y-02, A11Y-03)**: All three Critical findings are WCAG Level A accessibility violations. The hamburger menu and dropdown sections are invisible to screen readers and inoperable via keyboard (A11Y-01, A11Y-02), and the speisen menu block uses unsemantic divs for tabular data (A11Y-03). The first two are S effort quick fixes; A11Y-03 requires M effort for a semantic refactor.
 
 2. **Speisen block quality (A11Y-03, TEST-02, UX-02, UX-03)**: The custom menu block concentrates findings across 5 review categories. It lacks ARIA table semantics (Critical), has zero test coverage (High), no responsive breakpoints (High), and missing CSS styling for header rows (Medium). As the most complex custom code and the highest-value content for a restaurant website, this block should be the primary focus for custom code improvements.
 
@@ -33,7 +33,7 @@
 
 The schamdan.de codebase is a lean AEM Edge Delivery Services site with zero runtime dependencies and clean linting baselines. The EDS boilerplate provides a solid foundation, and the site correctly leverages the platform's CDN-served content model. However, the project inherits accessibility gaps from the unmodified boilerplate header code, and the custom speisen block -- the site's most important feature -- was built without responsive design, semantic markup, or test coverage. The 3 Critical and 12 High findings are concentrated in accessibility and the speisen block, both addressable with moderate effort. The remaining Medium and Low findings represent standard technical debt for a site at this maturity level.
 
-**Recommended next step**: Fix the 3 Critical accessibility findings first (all S effort, approximately 2-3 hours total), then address the speisen block's ARIA semantics and responsive layout.
+**Recommended next step**: Fix the 3 Critical accessibility findings first (A11Y-01 and A11Y-02 are S effort; A11Y-03 is M effort), then address the speisen block's responsive layout and test coverage.
 
 ---
 
@@ -74,7 +74,7 @@ All website source code (HTML, CSS, JS, templates, configuration, CI/CD). Exclud
 
 - ESLint passes clean (0 violations).
 - Stylelint passes clean (0 violations).
-- Test suite: 13 tests, all passing, 77.13% overall coverage.
+- Test suite: 13 tests, all passing, 73.18% overall coverage.
 
 ### Boilerplate Policy
 
@@ -1203,7 +1203,7 @@ Alternatively, add a text-shadow or use a solid background with slight transpare
 
 ### Security (SEC)
 
-#### [SEC-01] DA preview script loaded from remote origin without environment guard
+#### SEC-01DA preview script loaded from remote origin without environment guard
 
 | Attribute | Value |
 |-----------|-------|
@@ -1235,7 +1235,7 @@ export default (defined && isPreviewEnv)
 
 ---
 
-#### [SEC-02] innerHTML in speisen.js with regex-extracted content
+#### SEC-02innerHTML in speisen.js with regex-extracted content
 
 | Attribute | Value |
 |-----------|-------|
@@ -1274,7 +1274,7 @@ pricesEl.append(...matches.map((m) => {
 
 ---
 
-#### [SEC-03] innerHTML from fetch -- standard EDS document trust model
+#### SEC-03innerHTML from fetch -- standard EDS document trust model
 
 | Attribute | Value |
 |-----------|-------|
@@ -1289,7 +1289,7 @@ pricesEl.append(...matches.map((m) => {
 
 ---
 
-#### [SEC-04] No Content Security Policy
+#### SEC-04No Content Security Policy
 
 | Attribute | Value |
 |-----------|-------|
@@ -1325,7 +1325,7 @@ Note: The DA preview script (`da.live`) should only be allowed in non-production
 
 ---
 
-#### [SEC-05] External links correctly marked with noopener noreferrer
+#### SEC-05External links correctly marked with noopener noreferrer
 
 | Attribute | Value |
 |-----------|-------|
@@ -1340,7 +1340,7 @@ Note: The DA preview script (`da.live`) should only be allowed in non-production
 
 ---
 
-#### [SEC-06] Zero runtime npm dependencies
+#### SEC-06Zero runtime npm dependencies
 
 | Attribute | Value |
 |-----------|-------|
@@ -1355,7 +1355,7 @@ Note: The DA preview script (`da.live`) should only be allowed in non-production
 
 ### SEO (SEO)
 
-#### [SEO-01] No structured data (JSON-LD) for the restaurant
+#### SEO-01No structured data (JSON-LD) for the restaurant
 
 | Attribute | Value |
 |-----------|-------|
@@ -1394,7 +1394,7 @@ Populate fields from actual business data. Validate with Google's Rich Results T
 
 ---
 
-#### [SEO-02] No Menu structured data from speisen block
+#### SEO-02No Menu structured data from speisen block
 
 | Attribute | Value |
 |-----------|-------|
@@ -1444,7 +1444,7 @@ This is a larger effort due to needing to map the authored content model (item n
 
 ---
 
-#### [SEO-03] Placeholder favicon
+#### SEO-03Placeholder favicon
 
 | Attribute | Value |
 |-----------|-------|
@@ -1472,7 +1472,7 @@ Use the restaurant's logo or brand mark. SVG favicons are preferred for scalabil
 
 ---
 
-#### [SEO-04] Missing default-meta-image.png for Open Graph fallback
+#### SEO-04Missing default-meta-image.png for Open Graph fallback
 
 | Attribute | Value |
 |-----------|-------|
@@ -1489,7 +1489,7 @@ Use the restaurant's logo or brand mark. SVG favicons are preferred for scalabil
 
 ---
 
-#### [SEO-05] helix-query.yaml missing image property
+#### SEO-05helix-query.yaml missing image property
 
 | Attribute | Value |
 |-----------|-------|
@@ -1531,7 +1531,7 @@ This enables card blocks, search features, and sitemap image extensions to refer
 
 ---
 
-#### [SEO-06] 404 page in English on a German-language site
+#### SEO-06404 page in English on a German-language site
 
 | Attribute | Value |
 |-----------|-------|
@@ -1571,7 +1571,7 @@ Also update the dynamically generated "Go back" button text in the inline script
 
 ---
 
-#### [SEO-07] EDS handles robots.txt, sitemap, canonical, and OG tags automatically
+#### SEO-07EDS handles robots.txt, sitemap, canonical, and OG tags automatically
 
 | Attribute | Value |
 |-----------|-------|
